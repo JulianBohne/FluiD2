@@ -75,6 +75,12 @@ public static class Vec2{
   public float cross(Vec2 other){
     return this.x * other.y - this.y * other.x;
   }
+  public static float angleBetween(Vec2 a, Vec2 b){
+    return acos(a.dot(b) / (a.mag() * b.mag()));
+  }
+  public float angleBetween(Vec2 other){
+    return acos(this.dot(other) / (this.mag() * other.mag()));
+  }
   public float sqrMag(){
     return x * x + y * y;
   }
@@ -92,5 +98,8 @@ public static class Vec2{
     this.normalize();
     this.mult(magnitude);
     return this;
+  }
+  static Vec2 fromAngle(float angle){
+    return new Vec2(cos(angle), sin(angle));
   }
 }
