@@ -56,7 +56,10 @@ class Polygon{
       int indexC = (indexA + 2) % numOVerts;
       Vec2 ab = vertices.get(indexB).minus(vertices.get(indexA)).normalize();
       Vec2 bc = vertices.get(indexC).minus(vertices.get(indexB)).normalize();
-      vertexNormals[indexB] = new Vec2(ab.y + bc.y, -(ab.x + bc.x)).normalize();
+      float xSum = ab.x + bc.x;
+      float ySum = ab.y + bc.y;
+      if(xSum == 0 && ySum == 0) vertexNormals[indexB] = ab;
+      else vertexNormals[indexB] = new Vec2(ySum, -xSum).normalize();
       edgeNormals[indexB] = new Vec2(ab.y, - ab.x);
     }
   }

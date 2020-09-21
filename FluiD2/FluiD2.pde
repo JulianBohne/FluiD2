@@ -11,9 +11,9 @@ void setup(){
     points.add(vec);
   }
   poly = new Polygon(points);
-  println(poly.signedArea());
+  println("Original area: " + poly.signedArea());
   poly.setArea(670);
-  println(poly.signedArea());
+  println("Scaled area: " + poly.signedArea());
 }
 void draw(){
   
