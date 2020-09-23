@@ -5,6 +5,9 @@ public static class Vec2{
     this.x = x;
     this.y = y;
   }
+  public Vec2(Vec2 vec){
+    this.set(vec);
+  }
   
   public void set(float x, float y){
     this.x = x;

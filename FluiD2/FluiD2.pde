@@ -1,20 +1,13 @@
 ArrayList<Vec2> points = new ArrayList<Vec2>();
-Polygon poly;
+Blob b;
 
 void setup(){
-  size(10, 10);
-  int vertices = 100;
-  for(int i = 0; i < vertices; i ++){
-    Vec2 vec= Vec2.fromAngle((float)i/vertices*TWO_PI);
-    vec.x *= 2;
-    vec.mult(10);
-    points.add(vec);
-  }
-  poly = new Polygon(points);
-  println("Original area: " + poly.signedArea());
-  poly.setArea(670);
-  println("Scaled area: " + poly.signedArea());
+  size(800, 600);
+  b = new Blob(100);
+  
 }
 void draw(){
-  
+  background(125);
+  b.update();
+  b.render();
 }
