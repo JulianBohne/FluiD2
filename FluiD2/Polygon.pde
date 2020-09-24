@@ -103,7 +103,6 @@ class Polygon{
   
   public void setArea(float targetArea){
     float e = getExpansion(targetArea);
-    println(e);
     expand(e);
   }
 }

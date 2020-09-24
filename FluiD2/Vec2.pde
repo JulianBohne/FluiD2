@@ -9,6 +9,10 @@ public static class Vec2{
     this.set(vec);
   }
   
+  public String toString(){
+    return "(" + x + "," + y + ")";
+  }
+  
   public void set(float x, float y){
     this.x = x;
     this.y = y;
@@ -79,10 +83,10 @@ public static class Vec2{
     return this.x * other.y - this.y * other.x;
   }
   public static float angleBetween(Vec2 a, Vec2 b){
-    return acos(a.dot(b) / (a.mag() * b.mag()));
+    return acos(constrain(a.dot(b) / (a.mag() * b.mag()), -1, 1));
   }
   public float angleBetween(Vec2 other){
-    return acos(this.dot(other) / (this.mag() * other.mag()));
+    return acos(constrain(this.dot(other) / (this.mag() * other.mag()), -1, 1));
   }
   public float sqrMag(){
     return x * x + y * y;

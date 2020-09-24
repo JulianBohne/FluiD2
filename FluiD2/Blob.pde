@@ -1,5 +1,5 @@
 class Blob extends Polygon {
-  Vec2 grav = new Vec2(0, 0.01);
+  Vec2 grav = new Vec2(0, 0.05);
 
   ArrayList<Particle> particles;
   float area;
@@ -17,11 +17,11 @@ class Blob extends Polygon {
   void update() {
     for (Particle p : particles) p.addForce(grav);
     for (Particle p : particles) p.update();
-    float expAm = getExpansion(area);
-    println(expAm);
+    setArea(area);
+    /*float expAm = getExpansion(area);
     for (int i = 0; i < particles.size(); i ++) {
-      particles.get(i).addForce(vertexNormals[i].times(expAm).dividedBy(10));
-    }
+      particles.get(i).addForce(vertexNormals[i].times(expAm));
+    }*/
     reset();
   }
 
