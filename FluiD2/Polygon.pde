@@ -44,7 +44,6 @@ class Polygon{
     for(int i = 0; i < vertices.size(); i ++){
       vertices.get(i).add(vertexNormals[i].times(amount));
     }
-    reset();
   }
   
   public void calculateNormals(){
@@ -60,7 +59,7 @@ class Polygon{
       float ySum = ab.y + bc.y;
       if(xSum == 0 && ySum == 0) vertexNormals[indexB] = ab;
       else vertexNormals[indexB] = new Vec2(ySum, -xSum).normalize();
-      edgeNormals[indexB] = new Vec2(ab.y, - ab.x);
+      edgeNormals[indexA] = new Vec2(ab.y, - ab.x);
     }
   }
   
@@ -82,11 +81,11 @@ class Polygon{
       factorA += a;
       
       ///// Sum B /////
-      float alpha = HALF_PI - vertexNormals[indexA].angleBetween(edgeNormals[indexB]);
-      float beta  = HALF_PI - vertexNormals[indexB].angleBetween(edgeNormals[indexB]);
-      if(edgeNormals[indexB].cross(vertexNormals[indexB]) < 0) beta  = PI - beta;
-      if(vertexNormals[indexA].cross(edgeNormals[indexB]) < 0) alpha = PI - alpha;
-      if(a == 0) factorB += vertexB.minus(vertexA).mag() * cos(vertexNormals[indexB].angleBetween(edgeNormals[indexB]));
+      float alpha = HALF_PI - vertexNormals[indexA].angleBetween(edgeNormals[indexA]);
+      float beta  = HALF_PI - vertexNormals[indexB].angleBetween(edgeNormals[indexA]);
+      if(edgeNormals[indexA].cross(vertexNormals[indexB]) < 0) beta  = PI - beta;
+      if(vertexNormals[indexA].cross(edgeNormals[indexA]) < 0) alpha = PI - alpha;
+      if(a == 0) factorB += vertexB.minus(vertexA).mag() * cos(vertexNormals[indexB].angleBetween(edgeNormals[indexA]));
       else{
         float sinConstant = vertexB.minus(vertexA).mag() / sin(PI - alpha - beta);
         factorB += (sinConstant * sin(alpha) + sinConstant * sin(beta)) * a;
